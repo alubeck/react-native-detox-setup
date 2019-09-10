@@ -1,0 +1,51 @@
+{
+  "name": "DetoxTest",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "16.8.6",
+    "react-native": "0.60.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "detox": "^14.2.0",
+    "eslint": "^6.3.0",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/DetoxTest.app",
+        "build": "xcodebuild -workspace ios/DetoxTest.xcworkspace -scheme DetoxTest -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      },
+      "android.emu.debug": {
+        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
+        "type": "android.emulator",
+        "name": "Samsung_A5"
+      },
+      "android.emu.release": {
+        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
+        "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd ..",
+        "type": "android.emulator",
+        "name": "Samsung_A5"
+      }
+    },
+    "test-runner": "jest"
+  }
+}
